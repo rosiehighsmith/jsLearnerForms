@@ -81,6 +81,16 @@
         return a + b;
     }
 
+    // Vestigial function
+    function sum(nums) {
+        return nums.reduce(add, 0);
+    }
+
+    // Vestigial function
+    function squareAll(nums) {
+        return nums.map(square);
+    }
+
     function sumOfSquares(nums) {
         return nums.valueOf().map(square).reduce(add, 0);
     }
