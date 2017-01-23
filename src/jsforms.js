@@ -1,12 +1,17 @@
 (function () {
     'use strict';
 
-    function greet(greeting) {
-        var message = greeting !== undefined ? greeting : 'Hello';
-
-        return message + '!';
+    function isType(typeStr, value) {
+        return typeof value === typeStr;
     }
-        
+
+    function eitherType(typeStr, defaultValue, value) {
+        return isType(typeStr, value) ? value : defaultValue;
+    }
+
+    function greet(greeting) {
+        return eitherType('string', 'Hello', greeting) + '!';
+    }
 
     function square(x) {
         return Math.pow(x, 2);
