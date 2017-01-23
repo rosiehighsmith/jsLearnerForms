@@ -22,23 +22,15 @@
     function sum(nums) {
         var finalSum = 0;
 
-        nums.forEach(function(value) {
+        nums.forEach(function (value) {
             finalSum = add(finalSum, value);
         });
-
+        
         return finalSum;
     }
 
     function squareAll(nums) {
-        var result = [];
-        var squaredNum = 0;
-
-        nums.forEach(function (value) {
-            squaredNum = square(value);
-            result.push(squaredNum);
-        })
-
-        return result;
+        return nums.map(square);
     }
 
     function sumOfSquares(nums) {
@@ -46,18 +38,33 @@
         return sum(squares);
     }
 
+    function Vector(valueArray) {
+        this.points = valueArray;
+    }
+
+    Vector.prototype = {
+        valueOf: function () {
+            return this.points.slice(0);
+        },
+
+        toString: function () {
+            return '<' + this.points.valueOf().toString() + '>';
+        }
+    };
+
     function buildVector(valueArray) {
         var vector = valueArray.slice(0);
 
-        vector.valueOf = function () {
+        vector.valueOf = function() {
             return this.slice(0);
         };
 
-        vector.toString = function () {
+        vector.toString = function() {
             return '<' + this.valueOf().toString() + '>';
         };
 
         return vector;
+
     }
     
     function magnitude(vector) {
