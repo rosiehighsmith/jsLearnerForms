@@ -1,12 +1,10 @@
-(function() {
+(function () {
     'use strict';
 
     function greet(greeting) {
-        if(greeting === undefined) {
-            return 'Hello!';
-        } else {
-            return greeting + '!';
-        }
+        var message = greeting !== undefined ? greeting : 'Hello';
+
+        return message + '!';
     }
 
     function square(x) {
@@ -17,12 +15,16 @@
         return Math.sqrt(x);
     }
 
+    function add(a, b) {
+        return a + b;
+    }
+
     function sum(nums) {
         var finalSum = 0;
 
-        for(var index = 0; index < nums.length; index++) {
-            finalSum += nums[index];
-        }
+        nums.forEach(function(value) {
+            finalSum = add(finalSum, value);
+        });
 
         return finalSum;
     }
@@ -31,10 +33,10 @@
         var result = [];
         var squaredNum = 0;
 
-        for(var index = 0; index < nums.length; index++) {
-            squaredNum = square(nums[index]);
-            result[index] = squaredNum;
-        }
+        nums.forEach(function (value) {
+            squaredNum = square(value);
+            result.push(squaredNum);
+        })
 
         return result;
     }
@@ -57,7 +59,7 @@
 
         return vector;
     }
-
+    
     function magnitude(vector) {
         var summedSquares = sumOfSquares(vector);
         return squareRoot(summedSquares);
@@ -67,17 +69,17 @@
         var filteredVectors = [];
 
         for(var index = 0; index < vectors.length; index++) {
-            if(magnitude(vectors[index]) <= maxLength) {
+            if(magnitude(vectors[index]) < maxLength) {
                 filteredVectors[filteredVectors.length] = vectors[index];
             }
         }
 
         return filteredVectors;
     }
-    
+
     module.exports = {
         getVectorsShorterThan: getVectorsShorterThan,
-        magnitude: magnitude,
+        magnitude, magnitude,
         buildVector: buildVector,
         sumOfSquares: sumOfSquares,
         squareAll: squareAll,

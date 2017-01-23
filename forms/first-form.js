@@ -1823,7 +1823,7 @@ Even the longest journey begins with a single step. Good luck!
 
         vector.toString = function () {
             return '<' + this.valueOf().toString() + '>';
-        };
+        }
 
         return vector;
     }
