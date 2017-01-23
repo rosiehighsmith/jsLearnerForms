@@ -6,6 +6,7 @@
 
         return message + '!';
     }
+        
 
     function square(x) {
         return Math.pow(x, 2);
@@ -22,15 +23,15 @@
     function sum(nums) {
         var finalSum = 0;
 
-        nums.forEach(function (value) {
+        nums.forEach(function (value){
             finalSum = add(finalSum, value);
         });
-        
+
         return finalSum;
     }
 
     function squareAll(nums) {
-        return nums.map(square);
+        return nums.valueOf().map(square);
     }
 
     function sumOfSquares(nums) {
@@ -40,6 +41,10 @@
 
     function Vector(valueArray) {
         this.points = valueArray;
+
+        valueArray.forEach(function (value, index) {
+            this[index] = value;
+        }.bind(this));
     }
 
     Vector.prototype = {
@@ -48,23 +53,12 @@
         },
 
         toString: function () {
-            return '<' + this.points.valueOf().toString() + '>';
+            return '<' + this.valueOf().toString() + '>';
         }
     };
 
     function buildVector(valueArray) {
-        var vector = valueArray.slice(0);
-
-        vector.valueOf = function() {
-            return this.slice(0);
-        };
-
-        vector.toString = function() {
-            return '<' + this.valueOf().toString() + '>';
-        };
-
-        return vector;
-
+        return new Vector(valueArray);
     }
     
     function magnitude(vector) {
@@ -73,15 +67,9 @@
     }
 
     function getVectorsShorterThan(maxLength, vectors) {
-        var filteredVectors = [];
-
-        for(var index = 0; index < vectors.length; index++) {
-            if(magnitude(vectors[index]) < maxLength) {
-                filteredVectors[filteredVectors.length] = vectors[index];
-            }
-        }
-
-        return filteredVectors;
+        return vectors.filter(function (vector) {
+            return magnitude(vector) <= maxLength;
+        });
     }
 
     module.exports = {

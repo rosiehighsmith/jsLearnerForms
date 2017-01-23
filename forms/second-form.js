@@ -1108,6 +1108,13 @@ in second form follow the same test order as first form.
 //     return nums.valueOf().map(square);
 // }
 
+// function Vector (valueArray) {
+//         ...
+//         valueArray.forEach(function (value, index) {
+//             this[index] = value;
+//         }.bind(this));
+//     }
+
 // function buildVector(valueArray) {
 //     return new Vector(valueArray);
 // }
